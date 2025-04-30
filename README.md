@@ -1,51 +1,35 @@
+## 📘 專案說明（中文）
 
+本專案使用 PyTorch 建立一個簡單的神經網路，用於辨識 MNIST 手寫數字影像。整體流程包含資料預處理、模型建立、訓練流程與結果評估。
 
-🧠 PyTorch MNIST Classifier Practice
+---
 
-This is a beginner-friendly PyTorch project for training a neural network to recognize handwritten digits using the [MNIST dataset](http://yann.lecun.com/exdb/mnist/).
+### 🔁 程式碼流程解說
 
-## 📌 Project Features
+#### 1️⃣ 資料處理
+透過 torchvision 套件下載 MNIST 資料集，並將影像轉為 tensor 格式後標準化，使模型更容易收斂。
 
-- ✅ Trains a basic **MLP (Multi-Layer Perceptron)** model
-- ✅ Achieves over **94% accuracy** on the MNIST test set
-- ✅ Includes a 3-layer MLP visualization script to understand hidden layers and ReLU activation
-- ✅ Cleans up unnecessary files using `.gitignore` for a clean GitHub repo
+#### 2️⃣ 建立模型
+使用兩層全連接神經網路（MLP）：
+- 輸入層將 28x28 的影像攤平成一維向量
+- 中間層包含 ReLU 激活函數增加非線性能力
+- 輸出層對應 0~9 共 10 個分類結果
 
-## 📂 Project Structure
- ├── mnist_train.py # Main training script (MLP on MNIST) ├── pytorch 3nn.py # Toy example of 3-layer NN with ReLU and visualization ├── .gitignore # Files/folders excluded from version control
-## 🚀 How to Run
+#### 3️⃣ 模型訓練
+訓練過程中：
+- 每批資料進行 forward 預測
+- 計算預測值與實際標籤的誤差（loss）
+- 執行反向傳播更新權重
+- 重複多個 epoch 不斷優化參數
 
-Make sure you have Python + PyTorch installed.
+#### 4️⃣ 測試與評估
+將模型切換至評估模式後，在測試資料上計算預測結果並與標籤比較，得出整體準確率。
 
-Install dependencies (if not already):
-```bash
-pip install torch torchvision matplotlib
+---
 
-Run the training script:
-python mnist_train.py
+### 🧠 學習重點
 
-Optional: Visualize the 3-layer network behavior with:
-python "pytorch 3nn.py"
-
-🧠 Learning Focus
-This project is designed to practice:
-
-How neural networks learn from data
-
-The structure of feedforward networks (MLPs)
-
-How ReLU activation transforms intermediate layers
-
-Using torch, nn, DataLoader, optimizer, and loss
-
-🛠 To-Do / Future Work
- Convert model to CNN for higher accuracy
-
- Save and load .pt model files
-
- Add evaluation report and confusion matrix
-
- Deploy as a web app using Gradio or Streamlit
-
-🙌 Credits
-Created by Terry for PyTorch training practice.
+- 熟悉神經網路的 forward → loss → backward → update 流程
+- 了解 ReLU 如何讓模型具備非線性能力
+- 學會使用 DataLoader 管理批次資料與訓練流程
+- 初步掌握 PyTorch 架構與訓練基本技巧
